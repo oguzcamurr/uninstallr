@@ -27,16 +27,19 @@ brew install uninstallr
 
 
 🔹 Manual
+```bash
 git clone https://github.com/oguzcamurr/uninstallr.git
 cd uninstallr
 chmod +x uninstallr.sh
 ./uninstallr.sh --dry-run "Spotify"
-
+```
 
 🛠 Usage
+```bash
 uninstallr --dry-run "Spotify"   # Preview delete
 uninstallr "Spotify"             # Full delete
 uninstallr --force "Discord"     # No questions asked
+```
 
 ## 📸 CLI Preview
 
