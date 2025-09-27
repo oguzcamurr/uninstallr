@@ -1,10 +1,30 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Require macOS (Darwin)
-if [ "$(uname)" != "Darwin" ]; then
+if [ "$(uname -s)" != "Darwin" ]; then
   echo "Skipping: uninstallr requires macOS (Darwin)."
   exit 0
 fi
 set -euo pipefail
+
+# Parse flags
+DRY_RUN=0
+FORCE=0
+APP_NAME=""
+while (( "$#" )); do
+  case "$1" in
+    --dry-run) DRY_RUN=1; shift ;;
+    --force)   FORCE=1;   shift ;;
+    -h|--help) usage; exit 0 ;;
+    *) APP_NAME="$1"; shift ;;
+  esac
+done
+: "${APP_NAME:?Usage: ./uninstallr.sh [--dry-run] [--force] <App Name>}"
+
+echo "=== AppRemove Pro ==="
+echo "Target app: $APP_NAME"
+echo "Dry-run: $DRY_RUN  Force: $FORCE"
+REPORT="${REPORT:-$(pwd)/appremove-report-$(echo "$APP_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')-$(date +%Y%m%d-%H%M%S).txt}"
+echo "Report: $REPORT"
 
 usage() {
   cat <<'EOF'
