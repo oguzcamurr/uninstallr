@@ -12,16 +12,20 @@
 
 ---
 
-## ⚡ Quick Start  
+## ⚡ Quick Start
+
+### Install via Homebrew (recommended)
 
 ```bash
-# Install via Homebrew
-brew tap oguzcamurr/uninstallr
-brew install uninstallr
+brew install oguzcamurr/uninstallr/uninstallr
 
-# Remove Spotify safely
+Usage examples
+# Dry-run (safe mode, no files deleted)
+uninstallr --dry-run "Spotify"
+
+# Real uninstall
 uninstallr "Spotify"
-```
+
 ## 📦 Features
 
 ✅ Clean uninstall (app bundle + caches + plist)
