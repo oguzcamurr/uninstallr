@@ -118,3 +118,7 @@ appremove-report-spotify-20250927-175000.txt
 5. Remove related `pkgutil` receipts  
 6. Remove leftover logs from `~/Library/Logs/<App>`  
 
+## 📺 Demo
+
+![Demo GIF](docs/demo.gif)
+
