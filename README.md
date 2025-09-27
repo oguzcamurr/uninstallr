@@ -19,7 +19,7 @@ brew install uninstallr
 # Remove Spotify safely
 uninstallr "Spotify"
 ```
-##📦 Features
+## 📦 Features
 
 ✅ Clean uninstall (app bundle + caches + plist)
 
@@ -35,7 +35,7 @@ uninstallr "Spotify"
 
 ![CLI Screenshot](docs/screenshot-cli.png)
 
-##🗺️ Roadmap
+## 🗺️ Roadmap
 
 CLI Base Script
 
