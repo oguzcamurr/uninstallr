@@ -13,6 +13,15 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      - name: Diagnostics
+        run: |
+          uname -a
+          sw_vers || true
+          echo "PWD: $(pwd)"
+          ls -la
+          echo "Top of uninstallr.sh:"
+          head -n 20 uninstallr.sh
+
       - name: Ensure script is executable
         run: chmod +x uninstallr.sh
 
@@ -22,9 +31,8 @@ jobs:
       - name: Lint with ShellCheck
         run: shellcheck -x uninstallr.sh
 
-      - name: Dry-run test (Spotify)
+      - name: Dry-run test (tolerate non-zero)
         run: |
-          set -o pipefail
+          set -euo pipefail
           ./uninstallr.sh --dry-run "Spotify" || true
-
 
