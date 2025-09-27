@@ -12,7 +12,6 @@
 ## 📥 Installation
 
 Clone the repo:
-```bash
 git clone https://github.com/oguzcamurr/uninstallr.git
 cd uninstallr
 chmod +x uninstallr.sh
@@ -21,18 +20,12 @@ chmod +x uninstallr.sh
 🛠 Usage
 Preview files that would be removed:
 
-bash
-Kodu kopyala
 ./uninstallr.sh --dry-run "Spotify"
 Actually remove the app:
 
-bash
-Kodu kopyala
 ./uninstallr.sh "Spotify"
 Remove without confirmation:
 
-bash
-Kodu kopyala
 ./uninstallr.sh --force "Discord"
 🗺 Roadmap
  CLI base script
@@ -44,6 +37,11 @@ Kodu kopyala
  DMG installer
 
  Pro features: bulk uninstall, rollback, auto-updates
+
+## 📸 Screenshots
+
+**CLI Preview**  
+![CLI Screenshot](docs/screenshot-cli.png)
 
 🤝 Contributing
 Pull requests are welcome!
