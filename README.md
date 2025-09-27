@@ -22,12 +22,12 @@ brew install oguzcamurr/uninstallr/uninstallr
 
 Usage examples
 # Dry-run (safe mode, no files deleted)
-bash```
+```bash
 uninstallr --dry-run "Spotify"
 ```
 
 # Real uninstall
-bash```
+```bash
 uninstallr "Spotify"
 ```
 
