@@ -39,7 +39,7 @@ uninstallr "Spotify"
 
 🛠️ Force mode (no mercy 🔨)
 
-🍺 Homebrew support (tap + install)
+🍺 Homebrew support (formula + install)
 
 🖥️ GUI App (coming soon)
 
