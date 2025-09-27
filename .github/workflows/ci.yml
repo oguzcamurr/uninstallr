@@ -8,7 +8,7 @@ on:
 
 jobs:
   lint-and-test:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -17,15 +17,14 @@ jobs:
         run: chmod +x uninstallr.sh
 
       - name: Install ShellCheck
-        run: sudo apt-get update && sudo apt-get install -y shellcheck
+        run: brew update && brew install shellcheck
 
       - name: Lint with ShellCheck
         run: shellcheck -x uninstallr.sh
 
       - name: Dry-run test (Spotify)
-        env:
-          CI: "true"
         run: |
           set -euo pipefail
           ./uninstallr.sh --dry-run "Spotify"
+
 
