@@ -35,11 +35,10 @@ uninstallr "Spotify"
 
 ![CLI Screenshot](docs/screenshot-cli.png)
 
-## 🗺️ Roadmap
+## 🗺️ Roadmap  
 
-CLI Base Script
-
-Homebrew Formula
-
-GUI App (coming soon)
+- [x] CLI Base Script  
+- [x] Homebrew Formula  
+- [ ] GUI App (coming soon)  
+- [ ] DMG Installer  
 
