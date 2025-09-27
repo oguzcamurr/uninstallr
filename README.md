@@ -31,7 +31,7 @@ uninstallr "Spotify"
 
 🖥️ GUI App (coming soon)
 
-# 📸 CLI Preview
+## 📸 CLI Preview
 
 ![CLI Screenshot](docs/screenshot-cli.png)
 
@@ -71,7 +71,6 @@ Simulates the uninstall process and writes all steps to a report file, without a
 ```bash
 ./uninstallr.sh --dry-run "Spotify"
 ```
-
 Example output:
 === AppRemove Pro ===
 Target app: Spotify
@@ -83,7 +82,7 @@ Found bundle: /Applications/Spotify.app
 ...
 Dry-run complete.
 
-🗑 Real uninstall
+### 🗑 Real uninstall
 
 Runs the full 6-step uninstall and actually deletes files:
 ```bash
@@ -92,26 +91,16 @@ Runs the full 6-step uninstall and actually deletes files:
 At the end, a detailed log is written to a timestamped report file, for example:
 appremove-report-spotify-20250927-175000.txt
 
-⚙️ Options
+### ⚙️ Options
+- `--dry-run` → only simulate steps, don’t delete  
+- `--force` → suppress confirmations (future extension)  
+- `-h, --help` → show usage  
 
---dry-run → only simulate steps, don’t delete
-
---force → suppress confirmations (future extension)
-
--h, --help → show usage
-
-🪛 Steps performed
-
-Remove /Applications/<App>.app bundle
-
-Remove ~/Library/Application Support/<App>
-
-Remove ~/Library/Preferences/com.<app>.plist
-
-Remove ~/Library/Caches/<App>
-
-Remove related pkgutil receipts
-
-Remove leftover logs from ~/Library/Logs/<App>
-
+### 🪛 Steps performed
+1. Remove `/Applications/<App>.app` bundle  
+2. Remove `~/Library/Application Support/<App>`  
+3. Remove `~/Library/Preferences/com.<app>.plist`  
+4. Remove `~/Library/Caches/<App>`  
+5. Remove related `pkgutil` receipts  
+6. Remove leftover logs from `~/Library/Logs/<App>`  
 
