@@ -2,25 +2,28 @@ name: CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ['**']
   pull_request:
-    branches: [ "main" ]
+    branches: ['**']
   workflow_dispatch:
 
 jobs:
   lint-and-test:
     runs-on: macos-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-      - name: Runner info
+      - name: Assert macOS
         run: |
           echo "RUNNER_OS=$RUNNER_OS"
           echo "HOME=$HOME"
           uname -a
+          if [ "${RUNNER_OS}" != "macOS" ]; then
+            echo "Not on macOS. Wrong workflow/runner triggered."
+            exit 1
+          fi
           sw_vers || true
-          echo "PWD: $(pwd)"
+          echo "PWD=$(pwd)"
           ls -la
           echo "Top of uninstallr.sh:"
           head -n 20 uninstallr.sh || true
@@ -36,7 +39,5 @@ jobs:
 
       - name: Dry-run test (tolerate non-zero)
         continue-on-error: true
-        run: |
-          set -euo pipefail
-          ./uninstallr.sh --dry-run "Spotify"
+        run: ./uninstallr.sh --dry-run "Spotify"
 
