@@ -55,7 +55,7 @@ You can sync them with:
 
 ```bash
 github-label-sync --access-token <TOKEN> --labels labels.json oguzcamurr/uninstallr
-'''
+```
 
 ### 🧪 Testing
 
