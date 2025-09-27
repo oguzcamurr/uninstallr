@@ -37,8 +37,8 @@ uninstallr "Spotify"
 
 ## 🗺️ Roadmap  
 
-- [x] CLI Base Script  
-- [x] Homebrew Formula  
-- [ ] GUI App (coming soon)  
-- [ ] DMG Installer  
+- [x] CLI Base Script ✅ (Completed: Sep 2025)  
+- [x] Homebrew Formula ✅ (Completed: Sep 2025)  
+- [ ] GUI App (coming soon, Target: Q4 2025)  
+- [ ] DMG Installer (Target: Q1 2026)  
 
