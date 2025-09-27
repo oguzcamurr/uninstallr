@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Ensure script is executable
+        run: chmod +x uninstallr.sh
+
+      - name: Install ShellCheck
+        run: sudo apt-get update && sudo apt-get install -y shellcheck
+
+      - name: Lint with ShellCheck
+        run: shellcheck -x uninstallr.sh
+
+      - name: Dry-run test (Spotify)
+        env:
+          CI: "true"
+        run: |
+          set -euo pipefail
+          ./uninstallr.sh --dry-run "Spotify"
+
