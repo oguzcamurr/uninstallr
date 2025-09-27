@@ -28,17 +28,15 @@ cd uninstallr
 chmod +x uninstallr.sh
 (📌 Homebrew support and DMG installer coming soon)
 
-## 🍺 Install via Homebrewn
-n
-```bashn
-brew tap oguzcamurr/uninstallrn
-brew install uninstallrn
-```n
-n
-Then run:n
-n
-```bashn
-uninstallr --dry-run "Spotify"n
-```n
-n
-✅ Tested on macOS 15.6.1 (Apple Silicon, ARM64)n
+## 🍺 Install via Homebrew
+
+```bash
+brew tap oguzcamurr/uninstallr
+brew install uninstallr
+
+Then run:
+
+uninstallr --dry-run "Spotify"
+
+
+✅ Tested on macOS 15.6.1 (Apple Silicon, ARM64)
