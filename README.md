@@ -72,6 +72,7 @@ Simulates the uninstall process and writes all steps to a report file, without a
 ./uninstallr.sh --dry-run "Spotify"
 ```
 Example output:
+```bash
 === AppRemove Pro ===
 Target app: Spotify
 Dry-run: 1  Force: 0
@@ -81,6 +82,7 @@ Found bundle: /Applications/Spotify.app
 [2/6] Removing Application Support...
 ...
 Dry-run complete.
+```
 
 ### 🗑 Real uninstall
 
