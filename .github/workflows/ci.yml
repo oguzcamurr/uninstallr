@@ -1,32 +1,22 @@
-name: CI (macOS proof)
+name: CI
 
 on:
   push:
-    branches: ['**']
+    branches: [ "main" ]
   pull_request:
-    branches: ['**']
+    branches: [ "main" ]
   workflow_dispatch:
 
 jobs:
-  macos-ci:
+  lint-and-test:
     runs-on: macos-latest
     steps:
-      - name: UNIQUE_ASSERT_TOKEN_12345
-        run: echo "If you don't see this line, you're running a different workflow."
-
       - uses: actions/checkout@v4
 
-      - name: Assert macOS
+      - name: Diagnostics
         run: |
           echo "RUNNER_OS=$RUNNER_OS"
-          echo "HOME=$HOME"
-          echo "Workflow ref: ${{ github.workflow_ref }}"
-          echo "SHA: ${{ github.sha }}"
           uname -a
-          if [ "${RUNNER_OS}" != "macOS" ]; then
-            echo "Not on macOS. Wrong workflow/runner triggered."
-            exit 1
-          fi
           sw_vers || true
           echo "PWD=$(pwd)"
           ls -la
