@@ -42,3 +42,10 @@ uninstallr "Spotify"
 - [ ] GUI App (coming soon, Target: Q4 2025)  
 - [ ] DMG Installer (Target: Q1 2026)  
 
+---
+
+## 🤝 Contributing  
+
+Contributions are welcome! 🎉  
+Please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.  
+
