@@ -44,8 +44,23 @@ uninstallr "Spotify"
 
 ---
 
-## 🤝 Contributing  
+## 🤝 Contributing
 
 Contributions are welcome! 🎉  
-Please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.  
+Please check out the [CONTRIBUTING.md](CONTRIBUTING.md) file for guidelines.
+
+### 🏷️  Labels & Roadmap
+We use `labels.json` to keep GitHub labels consistent across the repo.  
+You can sync them with:
+
+```bash
+github-label-sync --access-token <TOKEN> --labels labels.json oguzcamurr/uninstallr
+'''
+
+### 🧪 Testing
+
+Before opening a Pull Request, please test your changes locally:
+```bash
+./uninstallr.sh --dry-run "Spotify"
+```
 
