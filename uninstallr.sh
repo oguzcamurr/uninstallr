@@ -1,89 +1,98 @@
 #!/usr/bin/env bash
-# uninstallr.sh – AppRemove Pro
+# uninstallr — Remove apps like they never existed (macOS only)
 
-# Darwin guard (Linux vs)
+# Require macOS (Darwin)
 if [ "$(uname -s)" != "Darwin" ]; then
   echo "Skipping: uninstallr requires macOS (Darwin)."
   exit 0
 fi
+
 set -euo pipefail
 
 usage() {
   cat <<'EOF'
 Usage:
-  ./uninstallr.sh [--dry-run] [--force] <App Name>
+  uninstallr [--dry-run] [--force|-y] <App Name>
 
 Options:
-  --dry-run   Just simulate steps, don’t delete
-  --force     Suppress confirmations
-  -h, --help  Show this help
+  --dry-run     Only simulate steps, don’t delete
+  --force, -y   Skip confirmation prompts
+  -h, --help    Show this help
+
+Examples:
+  uninstallr --dry-run "Spotify"
+  uninstallr -y "Spotify"
 EOF
 }
 
-# --- Parse flags ---
+# Default flags
 DRY_RUN=0
 FORCE=0
 APP_NAME=""
+
+# Parse flags
 while (( "$#" )); do
   case "$1" in
     --dry-run) DRY_RUN=1; shift ;;
-    --force)   FORCE=1; shift ;;
+    --force|-y|--yes) FORCE=1; shift ;;
     -h|--help) usage; exit 0 ;;
     *) APP_NAME="$1"; shift ;;
   esac
 done
-: "${APP_NAME:?Missing <App Name>. Run with -h for usage.}"
 
+if [ -z "$APP_NAME" ]; then
+  usage
+  exit 1
+fi
+
+# Report file
+REPORT="./appremove-report-$(echo "$APP_NAME" | tr '[:upper:]' '[:lower:]')-$(date +%Y%m%d-%H%M%S).txt"
+
+# Print summary
 echo "=== AppRemove Pro ==="
 echo "Target app: $APP_NAME"
 echo "Dry-run: $DRY_RUN  Force: $FORCE"
-
-REPORT="$(pwd)/appremove-report-$(echo "$APP_NAME" | tr '[:upper:]' '[:lower:]' | tr ' ' '-')-$(date +%Y%m%d-%H%M%S).txt"
 echo "Report: $REPORT"
-echo "----" >"$REPORT"
 
-# [1/6] Remove App bundle
-echo "[1/6] Removing /Applications bundle (if any)..." | tee -a "$REPORT"
-APP_PATH="/Applications/$APP_NAME.app"
-if [ -d "$APP_PATH" ]; then
-  echo "Found bundle: $APP_PATH" | tee -a "$REPORT"
-  if [ "$DRY_RUN" -eq 0 ]; then
-    rm -rf "$APP_PATH" | tee -a "$REPORT"
+# Pre-flight confirmation
+if [ "$DRY_RUN" -eq 1 ]; then
+  echo "Dry-run mode: no changes will be made."
+elif [ "$FORCE" -eq 1 ]; then
+  echo "Force mode: proceeding without confirmation."
+else
+  # Only ask if running in interactive terminal
+  if [ -t 0 ]; then
+    read -r -p "Proceed to remove \"$APP_NAME\"? [y/N] " REPLY </dev/tty
+    case "$REPLY" in
+      [yY][eE][sS]|[yY]) ;;
+      *) echo "Aborted."; exit 0 ;;
+    esac
+  else
+    echo "Non-interactive shell: add --force to proceed without prompt."
+    exit 1
   fi
 fi
 
-# [2/6] Remove Application Support
+echo "[1/6] Removing /Applications bundle (if any)..." | tee "$REPORT"
+if [ "$DRY_RUN" -eq 0 ]; then
+  rm -rf "/Applications/$APP_NAME.app" 2>/dev/null || true
+fi
+
 echo "[2/6] Removing Application Support..." | tee -a "$REPORT"
-SUPPORT_DIR="$HOME/Library/Application Support/$APP_NAME"
-if [ -d "$SUPPORT_DIR" ]; then
-  echo "Found support dir: $SUPPORT_DIR" | tee -a "$REPORT"
-  if [ "$DRY_RUN" -eq 0 ]; then
-    rm -rf "$SUPPORT_DIR" | tee -a "$REPORT"
-  fi
+if [ "$DRY_RUN" -eq 0 ]; then
+  rm -rf "$HOME/Library/Application Support/$APP_NAME" 2>/dev/null || true
 fi
 
-# [3/6] Remove Preferences plist
-echo "[3/6] Removing Preferences plist..." | tee -a "$REPORT"
-APP_ID_LOWER="$(echo "$APP_NAME" | tr '[:upper:]' '[:lower:]')"
-PLIST_FILE="$HOME/Library/Preferences/com.${APP_ID_LOWER}.plist"
-if [ -f "$PLIST_FILE" ]; then
-  echo "Found plist: $PLIST_FILE" | tee -a "$REPORT"
-  if [ "$DRY_RUN" -eq 0 ]; then
-    rm -f "$PLIST_FILE" | tee -a "$REPORT"
-  fi
+echo "[3/6] Removing Preferences..." | tee -a "$REPORT"
+if [ "$DRY_RUN" -eq 0 ]; then
+  rm -f "$HOME/Library/Preferences/com.$(echo "$APP_NAME" | tr '[:upper:]' '[:lower:]').plist" 2>/dev/null || true
 fi
 
-# [4/6] Remove Caches
 echo "[4/6] Removing Caches..." | tee -a "$REPORT"
-CACHE_DIR="$HOME/Library/Caches/$APP_NAME"
-if [ -d "$CACHE_DIR" ]; then
-  echo "Found cache dir: $CACHE_DIR" | tee -a "$REPORT"
-  if [ "$DRY_RUN" -eq 0 ]; then
-    rm -rf "$CACHE_DIR" | tee -a "$REPORT"
-  fi
+if [ "$DRY_RUN" -eq 0 ]; then
+  rm -rf "$HOME/Library/Caches/$APP_NAME" 2>/dev/null || true
 fi
 
-# [5/6] Remove pkgutil receipts
 echo "[5/6] Removing related receipts (if any)..." | tee -a "$REPORT"
 if command -v pkgutil >/dev/null 2>&1; then
   app_pkg_pattern="$(echo "$APP_NAME" | tr ' ' '.')"
@@ -93,26 +102,21 @@ if command -v pkgutil >/dev/null 2>&1; then
     if [ "$DRY_RUN" -eq 0 ]; then
       sudo pkgutil --forget "$f" | tee -a "$REPORT" || true
     fi
-  done < <(pkgutil --pkgs | grep -iF "$app_pkg_pattern" || true)
+  done < <(pkgutil --pkgs | grep -i "$app_pkg_pattern" || true)
 else
   echo "pkgutil not available, skipping receipts step." | tee -a "$REPORT"
 fi
 
-# [6/6] Remove user Library leftovers
-echo "[6/6] Removing user Library leftovers..." | tee -a "$REPORT"
-LOG_DIR="$HOME/Library/Logs/$APP_NAME"
-if [ -d "$LOG_DIR" ]; then
-  echo "Found logs: $LOG_DIR" | tee -a "$REPORT"
-  if [ "$DRY_RUN" -eq 0 ]; then
-    rm -rf "$LOG_DIR" | tee -a "$REPORT"
-  fi
+echo "[6/6] Removing leftover logs..." | tee -a "$REPORT"
+if [ "$DRY_RUN" -eq 0 ]; then
+  rm -rf "$HOME/Library/Logs/$APP_NAME" 2>/dev/null || true
 fi
 
-# Finalize
+# Dry-run exit
 if [ "$DRY_RUN" -eq 1 ]; then
   echo "Dry-run complete."
   exit 0
 fi
 
-echo "Uninstall complete. See report: $REPORT"
+echo "✅ Uninstall complete for $APP_NAME"
 
