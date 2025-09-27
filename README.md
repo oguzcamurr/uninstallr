@@ -22,7 +22,8 @@
 ### 🔹 Homebrew
 ```bash
 brew tap oguzcamurr/uninstallr
-brew install uninstallr
+brew install uninstallr```
+
 
 🔹 Manual
 git clone https://github.com/oguzcamurr/uninstallr.git
