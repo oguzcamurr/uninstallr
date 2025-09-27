@@ -1,4 +1,9 @@
 #!/bin/bash
+# Require macOS (Darwin)
+if [ "$(uname)" != "Darwin" ]; then
+  echo "Skipping: uninstallr requires macOS (Darwin)."
+  exit 0
+fi
 set -euo pipefail
 
 usage() {
@@ -105,12 +110,27 @@ for pat in "${SYS_PATHS[@]}"; do
 done
 
 echo "[5/6] Removing related receipts (if any)…" | tee -a "$REPORT"
-for f in $(pkgutil --pkgs | grep -i "$(echo "$APP_NAME" | tr ' ' '.')" || true); do
-  echo "Found receipt: $f" | tee -a "$REPORT"
-  if [ $DRY_RUN -eq 0 ]; then
-    sudo pkgutil --forget "$f" | tee -a "$REPORT" || true
-  fi
-done
+
+if command -v pkgutil >/dev/null 2>&1; then
+  app_pkg_pattern="$(echo "$APP_NAME" | tr ' ' '.')"
+
+  # pkg listesinde uygulama adına benzeyen kayıtları gez
+  while IFS= read -r f; do
+    [ -z "$f" ] && continue
+    echo "Found receipt: $f" | tee -a "$REPORT"
+
+    # Dry-run değilse forget uygula
+    if [ "${DRY_RUN:-1}" -eq 0 ]; then
+      sudo pkgutil --forget "$f" | tee -a "$REPORT" || true
+    fi
+  done < <(pkgutil --pkgs | grep -i "$app_pkg_pattern" || true)
+else
+  echo "pkgutil not available, skipping receipts step." | tee -a "$REPORT"
+fi
+if [ "${DRY_RUN:-1}" -eq 1 ]; then
+  echo "Dry-run complete."
+  exit 0
+fi
 
 echo "[6/6] Optional: empty Trash…" | tee -a "$REPORT"
 if [ $FORCE -eq 1 ]; then
