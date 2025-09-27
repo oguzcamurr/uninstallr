@@ -1,56 +1,46 @@
-# 🧹 uninstallr
+# 🧹 uninstallr  
 
-🔥 *"Remove apps like they never existed."*
+🔥 *"Remove apps like they never existed."*  
 
-![License](https://img.shields.io/badge/License-MIT-green.svg)
-![Version](https://img.shields.io/badge/version-v0.1.0-blue.svg)
-![macOS](https://img.shields.io/badge/macOS-15.6.1%2B-lightgrey.svg)
-![Built by](https://img.shields.io/badge/Built%20by-Oğuz%20Çamur-red)
-
----
-
-## 🚀 Features
-- Clean uninstall (app bundle + caches + plist)
-- Dry-run mode (preview before delete)
-- Force mode (no mercy 🔨)
-- Homebrew support (tap + install)
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
+![Version](https://img.shields.io/badge/version-v0.1.0-blue)  
+![macOS](https://img.shields.io/badge/macOS-15.6.1%2B-lightgrey)  
+![Built by](https://img.shields.io/badge/Built%20by-Oğuz%20Çamur-orange)  
 
 ---
 
-## 📦 Installation
+## ⚡ Quick Start  
 
-### 🔹 Homebrew
 ```bash
+# Install via Homebrew
 brew tap oguzcamurr/uninstallr
 brew install uninstallr
+
+# Remove Spotify safely
+uninstallr "Spotify"
 ```
+📦 Features
 
+✅ Clean uninstall (app bundle + caches + plist)
 
-🔹 Manual
-```bash
-git clone https://github.com/oguzcamurr/uninstallr.git
-cd uninstallr
-chmod +x uninstallr.sh
-./uninstallr.sh --dry-run "Spotify"
-```
+🔍 Dry-run mode (preview before delete)
 
-🛠 Usage
-```bash
-uninstallr --dry-run "Spotify"   # Preview delete
-uninstallr "Spotify"             # Full delete
-uninstallr --force "Discord"     # No questions asked
-```
+🛠️ Force mode (no mercy 🔨)
 
-## 📸 CLI Preview
+🍺 Homebrew support (tap + install)
+
+🖥️ GUI App (coming soon)
+
+# 📸 CLI Preview
 
 ![CLI Screenshot](docs/screenshot-cli.png)
 
-🗺 Roadmap
+🗺️ Roadmap
 
- CLI Base Script
+CLI Base Script
 
- Homebrew Formula
+Homebrew Formula
 
- GUI App (coming soon)
+GUI App (coming soon)
 
- DMG Installer
+DMG Installer
