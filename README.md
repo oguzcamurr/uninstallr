@@ -1,42 +1,59 @@
-# 🧹 uninstallr
+# 🧹 uninstallr  
 
-Modern lightweight app uninstaller for macOS (CLI + GUI planned).  
-Alternative to AppCleaner, but fully open-source.
+🔥 *"Remove apps like they never existed."*  
+
+██╗ ██╗███╗ ██╗██╗███╗ ██╗███████╗████████╗ █████╗ ██╗ ██╗
+██║ ██║████╗ ██║██║████╗ ██║██╔════╝╚══██╔══╝██╔══██╗██║ ██║
+██║ ██║██╔██╗ ██║██║██╔██╗ ██║█████╗ ██║ ███████║██║ ██║
+██║ ██║██║╚██╗██║██║██║╚██╗██║██╔══╝ ██║ ██╔══██║██║ ██║
+╚██████╔╝██║ ╚████║██║██║ ╚████║███████╗ ██║ ██║ ██║███████╗███████╗
+╚═════╝ ╚═╝ ╚═══╝╚═╝╚═╝ ╚═══╝╚══════╝ ╚═╝ ╚═╝ ╚═╝╚══════╝╚══════╝
+
+yaml
+Kodu kopyala
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-v0.1.0-blue.svg)](https://github.com/oguzcamurr/uninstallr/releases/tag/v0.1.0)
+[![macOS](https://img.shields.io/badge/macOS-15.6.1+-black.svg?logo=apple)]()
+[![Built by Oğuz Çamur](https://img.shields.io/badge/Built%20by-Oğuz%20Çamur-darkred.svg)](https://github.com/oguzcamurr)
 
 ---
 
-![License](https://img.shields.io/badge/License-MIT-green.svg) 
-![Shell](https://img.shields.io/badge/made%20with-Shell-blue)
-![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)
+## 🚀 Features
+- Clean uninstall (app bundle + caches + plist)  
+- Dry-run mode (preview before delete)  
+- Force mode (no mercy 🪓)  
+- Homebrew support (tap + install)  
 
 ---
 
-## ✨ Features
-- Remove apps *and* their leftover files (Preferences, Caches, Logs, LaunchAgents, etc.)
-- Dry-run mode: preview what will be deleted before running
-- Force mode: skip confirmation prompts
-- Generates a report of removed files
-- CLI ready ✅, SwiftUI GUI (AppCleaner alternative) coming soon
+## 🛠 Installation  
 
----
-
-## 📦 Installation
-
-Clone the repo:
-git clone git@github.com:oguzcamurr/uninstallr.git
-cd uninstallr
-chmod +x uninstallr.sh
-(📌 Homebrew support and DMG installer coming soon)
-
-## 🍺 Install via Homebrew
-
+**Homebrew**:  
 ```bash
 brew tap oguzcamurr/uninstallr
 brew install uninstallr
+Manual:
 
-Then run:
+bash
+Kodu kopyala
+git clone https://github.com/oguzcamurr/uninstallr.git
+cd uninstallr
+chmod +x uninstallr.sh
+⚡ Usage
+bash
+Kodu kopyala
+uninstallr --dry-run "Spotify"   # Preview delete
+uninstallr "Spotify"             # Full delete
+uninstallr --force "Discord"     # No questions asked
+🗺 Roadmap
+ CLI Base Script
 
-uninstallr --dry-run "Spotify"
+ Homebrew Formula
 
+ GUI App (coming soon)
 
-✅ Tested on macOS 15.6.1 (Apple Silicon, ARM64)
+ DMG Installer
+
+👤 Author
+Built with ☕, ⚡ and zero mercy by Oğuz Çamur
