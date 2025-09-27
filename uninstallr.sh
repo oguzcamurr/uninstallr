@@ -83,7 +83,7 @@ USER_PATHS=(
   "$HOME/Library/LaunchAgents/com.${APP_NAME_LOWER}.*"
 )
 for pat in "${USER_PATHS[@]}"; do
-  for f in $(/bin/ls -1d $pat 2>/dev/null || true); do
+  for f in $(/bin/ls -1d "$pat" 2>/dev/null || true); do
     say_do "rm -rf \"$f\""
   done
 done
@@ -99,7 +99,7 @@ SYS_PATHS=(
   "/Library/Logs/${APP_NAME}*"
 )
 for pat in "${SYS_PATHS[@]}"; do
-  for f in $(/bin/ls -1d $pat 2>/dev/null || true); do
+  for f in $(/bin/ls -1d "$pat" 2>/dev/null || true); do
     say_do "sudo rm -rf \"$f\""
   done
 done
