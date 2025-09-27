@@ -28,6 +28,16 @@ cd uninstallr
 chmod +x uninstallr.sh
 (📌 Homebrew support and DMG installer coming soon)
 
+## 🍺 Install via Homebrew
+
+brew tap oguzcamurr/uninstallr
+brew install uninstallr
+
+Then run:
+uninstallr --dry-run "Spotify"
+✅ Tested on macOS 15.6.1 (Apple Silicon, ARM64)
+
+
 🛠 Usage
 Preview files that would be removed:
 
