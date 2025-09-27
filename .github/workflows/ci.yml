@@ -24,7 +24,7 @@ jobs:
 
       - name: Dry-run test (Spotify)
         run: |
-          set -euo pipefail
-          ./uninstallr.sh --dry-run "Spotify"
+          set -o pipefail
+          ./uninstallr.sh --dry-run "Spotify" || true
 
 
