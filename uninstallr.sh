@@ -109,12 +109,12 @@ for pat in "${SYS_PATHS[@]}"; do
   done
 done
 
-echo "[5/6] Removing related receipts (if any)…" | tee -a "$REPORT"
+echo "[5/6] Removing related receipts (if any)..." | tee -a "$REPORT"
 
 if command -v pkgutil >/dev/null 2>&1; then
   app_pkg_pattern="$(echo "$APP_NAME" | tr ' ' '.')"
 
-  # pkg listesinde uygulama adına benzeyen kayıtları gez
+  # pkg listesinde uygulama adına benzeyen kayıtları gez (fixed-string, case-insensitive)
   while IFS= read -r f; do
     [ -z "$f" ] && continue
     echo "Found receipt: $f" | tee -a "$REPORT"
@@ -123,13 +123,9 @@ if command -v pkgutil >/dev/null 2>&1; then
     if [ "${DRY_RUN:-1}" -eq 0 ]; then
       sudo pkgutil --forget "$f" | tee -a "$REPORT" || true
     fi
-  done < <(pkgutil --pkgs | grep -i "$app_pkg_pattern" || true)
+  done < <(pkgutil --pkgs | grep -iF "$app_pkg_pattern" || true)
 else
   echo "pkgutil not available, skipping receipts step." | tee -a "$REPORT"
-fi
-if [ "${DRY_RUN:-1}" -eq 1 ]; then
-  echo "Dry-run complete."
-  exit 0
 fi
 
 echo "[6/6] Optional: empty Trash…" | tee -a "$REPORT"
@@ -144,4 +140,9 @@ fi
 
 echo
 echo "✅ Done. Removal report saved to: $REPORT" | tee -a "$REPORT"
+
+if [ "${DRY_RUN:-1}" -eq 1 ]; then
+  echo "Dry-run complete."
+  exit 0
+fi
 
