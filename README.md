@@ -2,12 +2,13 @@
 
 🔥 *"Remove apps like they never existed."*  
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)  
-![CI](https://github.com/oguzcamurr/uninstallr/actions/workflows/ci.yml/badge.svg)  
-![ShellCheck](https://img.shields.io/badge/shellcheck-passing-brightgreen?logo=gnu-bash&logoColor=white)  
-![Version](https://img.shields.io/badge/version-v0.1.0-blue)  
-![macOS](https://img.shields.io/badge/macOS-15.6.1%2B-lightgrey)  
-![Built by](https://img.shields.io/badge/Built%20by-Oğuz%20Çamur-orange)  
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+![CI](https://github.com/oguzcamurr/uninstallr/actions/workflows/ci.yml/badge.svg)
+![ShellCheck](https://img.shields.io/badge/shellcheck-passing-brightgreen?logo=gnu-bash&logoColor=white)
+![Version](https://img.shields.io/badge/version-v0.1.0-blue)
+![macOS](https://img.shields.io/badge/macOS-15.6.1%2B-lightgrey)
+![Built by](https://img.shields.io/badge/Built%20by-Oğuz%20Çamur-orange)
+
 
 ---
 
