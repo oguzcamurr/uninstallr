@@ -31,6 +31,14 @@ Built with **SwiftUI** + **AppKit integration**.
 
 ---
 
+## 🌙 Dark Mode Preview
+
+Here’s how Uninstallr looks in macOS Dark Mode:
+
+![Main Dark](screenshots/main-dark.png)
+
+---
+
 ## 🛠️ Development
 Clone the repository and open with **Xcode**:
 
@@ -38,3 +46,21 @@ Clone the repository and open with **Xcode**:
 git clone https://github.com/oguzcamurr/uninstallr.git
 cd uninstallr
 open Uninstallr.xcodeproj
+```
+
+### Requirements
+- macOS 13+
+- Xcode 15+
+- Swift 5.9+
+
+---
+
+## 🤝 Contributing
+Pull requests are welcome!  
+For major changes, please open an issue first to discuss what you’d like to change.  
+
+---
+
+## 📄 License
+[MIT](LICENSE)
+
