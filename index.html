@@ -1,1 +1,123 @@
-<!DOCTYPE html><html><head><meta charset="UTF-8"><title>Uninstallr</title></head><body><h1>🧹 Uninstallr</h1><p>A lightweight macOS app to completely uninstall applications.</p></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Uninstallr – macOS App Uninstaller</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: #f5f7fa;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background: #24292e;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 2.5rem;
+    }
+    header p {
+      margin: 5px 0 0;
+      font-size: 1.2rem;
+      opacity: 0.8;
+    }
+    main {
+      max-width: 900px;
+      margin: 40px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .button {
+      display: inline-block;
+      padding: 15px 25px;
+      margin-top: 20px;
+      background: #2ea44f;
+      color: #fff;
+      font-size: 1.2rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+    .button:hover {
+      background: #22863a;
+    }
+    section {
+      margin-top: 60px;
+      text-align: left;
+    }
+    section h2 {
+      color: #24292e;
+      border-left: 5px solid #2ea44f;
+      padding-left: 10px;
+    }
+    .screenshots {
+      display: flex;
+      gap: 20px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .screenshots img {
+      max-width: 100%;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+      flex: 1;
+    }
+    footer {
+      background: #24292e;
+      color: #aaa;
+      text-align: center;
+      padding: 20px;
+      margin-top: 60px;
+      font-size: 0.9rem;
+    }
+    footer a {
+      color: #58a6ff;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🧹 Uninstallr</h1>
+    <p>Modern lightweight app uninstaller for macOS</p>
+  </header>
+
+  <main>
+    <p>A macOS app to completely uninstall applications and their related files.  
+    Built with <strong>SwiftUI + AppKit</strong>.</p>
+
+    <a href="https://github.com/oguzcamurr/uninstallr/releases/latest/download/Uninstallr.dmg" class="button">
+      ⬇️ Download for macOS
+    </a>
+
+    <section>
+      <h2>✨ Features</h2>
+      <ul>
+        <li>Complete app + related files removal</li>
+        <li>Clean reports with detailed logs</li>
+        <li>Dark mode support</li>
+        <li>Simple, lightweight, and free</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>📸 Screenshots</h2>
+      <div class="screenshots">
+        <img src="https://raw.githubusercontent.com/oguzcamurr/uninstallr/main/screenshots/main.png" alt="Main UI">
+        <img src="https://raw.githubusercontent.com/oguzcamurr/uninstallr/main/screenshots/reports.png" alt="Reports UI">
+        <img src="https://raw.githubusercontent.com/oguzcamurr/uninstallr/main/screenshots/settings.png" alt="Settings UI">
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>MIT License · <a href="https://github.com/oguzcamurr/uninstallr">View on GitHub</a></p>
+  </footer>
+</body>
+</html>
+
